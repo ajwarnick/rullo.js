@@ -1,0 +1,26 @@
+{
+  "name": "rullo.js",
+  "version": "1.0.0",
+  "description": "Simple vue app for the math puzzle game Rullo ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajwarnick/rullo.js.git"
+  },
+  "keywords": [
+    "vue",
+    "puzzle",
+    "game",
+    "math",
+    "rullo"
+  ],
+  "author": "Anthony Warnick",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/ajwarnick/rullo.js/issues"
+  },
+  "homepage": "https://github.com/ajwarnick/rullo.js#readme"
+}

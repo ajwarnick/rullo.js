@@ -1,7 +1,7 @@
 {
   "name": "rullo.js",
   "version": "1.0.0",
-  "description": "Simple vue app for the math puzzle game Rullo ",
+  "description": "Simple javascirpt app for the math puzzle game Rullo ",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

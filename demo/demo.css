@@ -23,6 +23,9 @@ a:visited {
     color: purple;
 }
 
+/* Above here is the base style I advise starting from in all projects */
+/* From here down is the few styles to make it look kind of like the game */
+
 .game{
     margin-top: 10vh;
 }
@@ -42,6 +45,9 @@ a:visited {
     user-select: none;
 
     cursor: pointer;
+
+    /* This will be the main property added in the final project */
+    transition: color .5s;
 }
 
 .inactive{

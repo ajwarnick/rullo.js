@@ -1,2 +1,2 @@
 # rullo.js
-Simple vue app for the math puzzle game Rullo 
+Simple javascirpt app for the math puzzle game Rullo 

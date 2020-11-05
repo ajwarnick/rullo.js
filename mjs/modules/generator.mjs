@@ -28,7 +28,7 @@ generator.load = (size, mode) => {
 }
 
 generator.random = (length) => {
-    let arr = []
+    let arr = [];
 
     return arr;
 }

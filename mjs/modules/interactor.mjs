@@ -1,6 +1,37 @@
+import {validator} from "./validator.mjs";
+
 let interactor = {
     loaded: false
 }
+
+interactor.setup = (size, mode) => {
+
+    // CHECK FOR COOKIES
+        // LOG IF FOUND
+        // IF BOTH FIRE SETUP
+        
+
+    // CHECK FOR MODE SET IN HTML
+        // LOG IF FOUND
+        // IF BOTH FIRE SETUP
+        
+    // CHECK FOR SIZE SET IN HTML
+        // LOG IF FOUND
+        // IF BOTH FIRE SETUP
+
+
+    // CLICK EVENT FOR MODE
+        // ADD CLASS NONE
+        // IF BOTH FIRE SETUP
+
+    // CLICK EVENT FOR SIZE
+        // ADD CLASS NONE
+        // IF BOTH FIRE SETUP
+
+    // RETURN SIZE MODE ETC.
+
+}
+
 
 interactor.click = () => {
     // this get each cell and adds a click event to toggle the class of 'inactive' 
@@ -10,6 +41,8 @@ interactor.click = () => {
             e.target.classList.toggle("inactive");
 
             // CHECK IF ROW IS COMPLETED 
+            // USING VALIDATOR
+            // validator.check();
         }); 
     })
 }

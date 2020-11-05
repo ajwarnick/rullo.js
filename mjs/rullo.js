@@ -9,10 +9,13 @@ let version = "0.1.0";
 console.log("Version: " + version + " - Loaded");
 
 
+// INTERACTOR SETUP
+// PASS TO GENERATTOR
 // generator.load();
 // console.log(generator.loaded);
 
 let nums = generator.load();
+// The numbers that have been generated are passed to our generator
 interactor.load(nums);
 
 

@@ -20,13 +20,18 @@ generator.load = (size, mode) => {
     let matrix = [7, 5, 4, 4, 1, 3, 3, 4, 8, 4, 4, 3, 5, 5, 3, 8, 6, 1, 1, 3, 8, 6, 5, 7, 7];
     let punched = [];
     console.log(generator.solve(5,punched));
-    
+
     // GENERATE AND CHECK IF MATRIX WORKS
 
     // this sends the gererated matrix to the main module for use in the game
     return matrix;
 }
 
+generator.random = (length) => {
+    let arr = []
+
+    return arr;
+}
 
 generator.solve = (size, matrix) => {
     let rows = [];

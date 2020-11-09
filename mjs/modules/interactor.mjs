@@ -39,8 +39,12 @@ interactor.click = () => {
     Array.from(cells).forEach((cell, index) => {
         cell.addEventListener("click", (e) => {
             e.target.classList.toggle("inactive");
-
+            
             // CHECK IF ROW IS COMPLETED 
+            // USING VALIDATOR
+            validator.check(e);
+
+            // CHECK IF THE COLUMN IS COMPLETED 
             // USING VALIDATOR
             // validator.check();
         }); 
@@ -68,9 +72,9 @@ interactor.load = (matrix, rows, cols) => {
         }
     }
 
-
     interactor.click();
 }
+
 
 
 

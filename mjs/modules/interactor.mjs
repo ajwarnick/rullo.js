@@ -47,12 +47,27 @@ interactor.click = () => {
     })
 }
 
-interactor.load = (matrix) => {
+interactor.load = (matrix, rows, cols) => {
     // this fills each cell with the apropiate number from the matrix 
     let cells = document.getElementsByClassName("cell");
     Array.from(cells).forEach((cell, index) => {
         cell.innerHTML = matrix[index];
     })
+
+    // this fills the column ends with the target values from the cols 
+    for(let column of document.getElementsByClassName("cols")) { 
+        Array.from(column.children).forEach((cell, index) => {
+            cell.innerHTML = cols[index];
+        })
+    }
+
+    for( let row of document.getElementsByClassName("row")){
+        let value = rows.shift();
+        for( let sum of row.getElementsByClassName("sum")){
+            sum.innerHTML = value
+        }
+    }
+
 
     interactor.click();
 }

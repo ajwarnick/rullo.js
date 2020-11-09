@@ -42,6 +42,10 @@ a:visited {
     text-align: center;
 }
 
+.cols div:first-child{
+    grid-column-start:2;
+}
+
 .cell{
     -webkit-user-select: none;  
     -moz-user-select: none;    

@@ -5,17 +5,90 @@ import {generator} from "./modules/generator.mjs";
 import {interactor} from "./modules/interactor.mjs";
 
 let version = "0.1.0";
+const debug = false;
+(debug) && (console.log("Version: " + version + " - Loaded"));
 
-console.log("Version: " + version + " - Loaded");
+let matrix;
 
+// The Setup Ojbect gets the settings from the HTML and call the generator 
+const setup = {
+    size: null,
+    sequenceStart: null,
+    sequenceEnd: null,
+    setSize: (s) => {
+        (debug) && (console.log("Size: " + s));
+        setup.size = s;
+        for (let element of document.getElementsByClassName('selection size')) { 
+            element.classList.toggle("hidden")
+        }
+        setup.allSet();
+    },
+    setSequence: (s,e) => {
+        (debug) && (console.log("Sequence: " + s + "-" + e));
+        setup.sequenceStart = s;
+        setup.sequenceEnd = e;
+        for (let element of document.getElementsByClassName('selection sequence')) { 
+            element.classList.toggle("hidden")
+        }
+        setup.allSet();
+    },
+    sizeClick: () => {
+        // sets a click event of our size elements 
+        for (let element of document.getElementsByClassName('selection size')) { 
+            element.addEventListener('click', function (e) {
+                if(e.target.dataset.size){
+                    // sets the size data 
+                    setup.setSize(e.target.dataset.size)
+                }
+            })
+        }
+    },
+    sequenceClick: () => {
+        // sets a click event of our sequence elements 
+        for (let element of document.getElementsByClassName('selection sequence')) { 
+            element.addEventListener('click', function (e) {
+                if(e.target.dataset.sequenceStart && e.target.dataset.sequenceEnd){
+                    // sets the sequence data 
+                    setup.setSequence(e.target.dataset.sequenceStart, e.target.dataset.sequenceEnd)
+                }
+            })
+        }
+    },
+    onLoad: () => {
+        // Gets the body element 
+        const body = document.body;
 
-// INTERACTOR SETUP
-// PASS TO GENERATTOR
-// generator.load();
-// console.log(generator.loaded);
+        // checks to see if the body has a size data attribute
+        if( ("size" in body.dataset) ){
+            setup.setSize(body.dataset.size);
+        }
 
-let nums = generator.load();
-// The numbers that have been generated are passed to our generator
-interactor.load(nums);
+        // checks to see if the body has the sequence data attributes
+        if( ("sequenceStart" in body.dataset) && ("sequenceEnd" in body.dataset) ){
+            setup.setSequence(body.dataset.sequenceStart, body.dataset.sequenceEnd);
+        }
 
+        // if our attributes have values we set them and if not we wait
+        if( setup.size && setup.sequenceStart && setup.sequenceEnd ){
+            setup.allSet();
+        }else if(setup.size){
+            setup.sequenceClick();
+        }else if(setup.sequenceStart && setup.sequenceEnd){
+            setup.sizeClick();
+        }else{
+            setup.sequenceClick();
+            setup.sizeClick();
+        }
+    },
+    allSet: () => {
+        // if our size and sequence are set we call the generator if not we wait
+        if( setup.size && setup.sequenceStart && setup.sequenceEnd ){
+            // now that all the settings are set we can call the generator
+            matrix = generator.load(setup.size, setup.sequenceStart, setup.sequenceEnd);
+            // the we pass the matrix of numbers to our intoractor once it has been generated 
+            interactor.load(matrix);
+        }
+    }
+}
 
+setup.onLoad();

@@ -3,7 +3,7 @@ let generator = {
     loaded: false
 }
 
-generator.load = (size, mode) => {
+generator.load = (size, modeStart, modeEnd) => {
     if(generator.loaded){
         // the generator has already been run so we dont want to run it again
         return

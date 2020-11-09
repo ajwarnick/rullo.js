@@ -23,6 +23,10 @@ a:visited {
     color: purple;
 }
 
+.hidden{
+    display: none;
+}
+
 /* Above here is the base style I advise starting from in all projects */
 /* From here down is the few styles to make it look kind of like the game */
 
@@ -56,4 +60,19 @@ a:visited {
 
 .success{
     border: 1px solid green;
+}
+
+.option{
+    -webkit-user-select: none;  
+    -moz-user-select: none;    
+    -ms-user-select: none;      
+    user-select: none;
+
+    cursor: pointer;
+
+    border: 1px solid black;
+    text-align: center;
+    padding: 20px;
+    margin: 20px;
+    
 }

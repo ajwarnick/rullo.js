@@ -86,9 +86,13 @@ const setup = {
         // if our size and sequence are set we call the generator if not we wait
         if( setup.size && setup.sequenceStart && setup.sequenceEnd ){
             // now that all the settings are set we can call the generator
-            const { matrix, rows, cols } = generator.load( setup.size, setup.sequenceStart, setup.sequenceEnd );
-            // the we pass the matrix of numbers to our intoractor once it has been generated 
-            interactor.load(matrix, rows, cols);
+            // but only if it hasn't been called yet
+            if( !generator.loaded ){
+                let { matrix, rows, cols } = generator.load( 5, 1, 4 );
+                // the we pass the matrix of numbers to our intoractor once it has been generated 
+                interactor.load(matrix, rows, cols);
+            }
+            
         }
     }
 }

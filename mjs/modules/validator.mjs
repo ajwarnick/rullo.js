@@ -22,8 +22,10 @@ validator.check = (e) => {
         }
     }
 
-    // ADD CHECK FOR ALL ROWS AND ALL COLS 
+    // ADD CHECK FOR ALL ROWS AND ALL COLS
+    // STOP TIMER 
     // ADD VICTORY CLASS
+    
     
 }
 

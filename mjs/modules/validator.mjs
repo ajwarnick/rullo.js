@@ -4,6 +4,7 @@ let validator = {
 
 validator.check = (e) => {
     let row = validator.row(e);
+    let col = validator.col(e);
     // if the row is completed set the sum to success
     for(let sum of getSiblingSums(e.target)){
         if(row){
@@ -13,10 +14,21 @@ validator.check = (e) => {
         }
     }
 
+    for(let sum of getColumnsSums(e.target)){
+        if(col){
+            sum.classList.add("success");
+        }else{
+            sum.classList.remove("success");
+        }
+    }
+
+
+    
 }
 
 validator.row = (e) => {
-    let total,target;
+    let total,target,r;
+
     // Check if the element is active or inactive and depending adds it to the total
     (e.target.classList.contains("inactive")) ?  total = 0 : total = parseInt(e.target.innerHTML);
 
@@ -29,13 +41,28 @@ validator.row = (e) => {
             total += parseInt(sibling.innerHTML);
         }
     }
-    let r;
+
     (total === target) ? r = true : r = false; 
     return r;
 }
 
 validator.col = (e) => {
+    let total = 0;
+    let target, r;
+    var n = Array.from(e.target.parentNode.children).indexOf(e.target) - 1; 
+
+    // set our target value
+    target = parseInt(document.querySelector('.cols').children.item(n).innerHTML);
     
+    // add up our total
+    for(let sibling of getColumns(e.target)){
+        if( !sibling.classList.contains("inactive")){
+            // add each active sibling to our total
+            total += parseInt(sibling.innerHTML);
+        }
+    }
+    (total === target) ? r = true : r = false; 
+    return r
 }
 
 export { validator };
@@ -72,15 +99,25 @@ let getColumns = (elem) => {
     // set up our cols array and get our first element 
     let cols = [];
 
+    // set the column number our element is
+    var n = Array.from(elem.parentNode.children).indexOf(elem);
+
+    // get all the others in the column
+    for( let col of document.getElementsByClassName('row') ){
+        let all = col.children;
+        cols.push(all.item(n));     
+    }
+
     return cols
 };
 
 let getColumnsSums = (elem) => {
     let sums = [];
-    for(let sibling of getColumns(elem)){
-        if(sibling.classList.contains("sum")){
-            sums.push(sibling)
-        }
+    var n = Array.from(elem.parentNode.children).indexOf(elem) - 1;
+
+    for(let col of document.getElementsByClassName('cols')){
+        sums.push(col.children.item(n));
     }
+
     return sums;
 }

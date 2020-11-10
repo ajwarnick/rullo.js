@@ -1,4 +1,4 @@
-# ![](https://raw.githubusercontent.com/ajwarnick/rullo.js/main/assets/logo_yellow_circle%402x.png)
+### ![](https://raw.githubusercontent.com/ajwarnick/rullo.js/main/assets/logo_yellow_circle%402x.png)
 
 #### Simple javascript app for the math puzzle game Rullo 
 
@@ -11,4 +11,6 @@ Rullo is a simple math puzzle where you have a board full of numbers.  The goal 
 
 
 ### Example
+
+
 

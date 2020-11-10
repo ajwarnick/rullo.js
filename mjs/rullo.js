@@ -4,9 +4,11 @@
 import {generator} from "./modules/generator.mjs";
 import {interactor} from "./modules/interactor.mjs";
 
-let version = "0.1.0";
+let name = "RULLO.JS";
+let version = "0.2.0";
+
 const debug = false;
-(debug) && (console.log("Version: " + version + " - Loaded"));
+(debug) && (console.log(name + " Version: " + version + " - Loaded"));
 
 let matrix;
 

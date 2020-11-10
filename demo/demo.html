@@ -6,11 +6,12 @@
     <title>Document</title>
     <link rel="stylesheet" href="./demo.css">
     <script src="../mjs/rullo.js" type="module" difer></script>
+    <!-- <script src="../dist/js/rullo.js" difer></script> -->
 </head>
 <!-- if there are data attributes on the body the selection DIVs will get the class 'hidden' -->
 <!-- This body sets all of our settings -->
 <!-- ADD TIMER DATA -->
-<body data-size="5" data-sequence-start="1" data-sequence-end="9">
+<body data-size="5" data-sequence-start="1" data-sequence-end="9" data-debug="false" data-timer="10">
 <!-- This body doesn't set any of our settings -->
 <!-- <body> -->
 
@@ -36,9 +37,6 @@
         <div class="option" data-sequence-start="3" data-sequence-end="7">3-7</div>
         <!-- etc. for any sequence -->
     </div>
-
-    <!-- ADD TIMER -->
-    <div class="timer"></div>
 
     <!-- this will be shown if the time get to the upper limit and victory has not been declared -->
     <div class="gameover hidden"></div>
@@ -114,6 +112,8 @@
         </div>
     </div>
 
+    <!-- Timer updates every second and is filled with the time left -->
+    <div class="timer"></div>
 
 </body>
 </html>

@@ -3,11 +3,12 @@
 
 import {generator} from "./modules/generator.mjs";
 import {interactor} from "./modules/interactor.mjs";
+import {timer} from "./modules/timer.mjs";
 
 let name = "RULLO.JS";
 let version = "0.2.0";
 
-const debug = false;
+let debug = false;
 (debug) && (console.log(name + " Version: " + version + " - Loaded"));
 
 let matrix;
@@ -17,6 +18,7 @@ const setup = {
     size: null,
     sequenceStart: null,
     sequenceEnd: null,
+
     setSize: (s) => {
         (debug) && (console.log("Size: " + s));
         setup.size = s;
@@ -57,8 +59,22 @@ const setup = {
         }
     },
     onLoad: () => {
+        // CHECK FOR COOKIES
+            // LOG IF FOUND
+            // IF BOTH FIRE SETUP
+
+
         // Gets the body element 
         const body = document.body;
+
+
+        if( ("debug" in body.dataset) ){
+            // debug = body.dataset.debug;
+        }
+
+        if( ("timer" in body.dataset) ){
+            timer.initialize(body.dataset.timer);
+        }
 
         // checks to see if the body has a size data attribute
         if( ("size" in body.dataset) ){
@@ -97,8 +113,9 @@ const setup = {
     }
 }
 
-setup.onLoad();
-
+window.onload = function() {
+    setup.onLoad();
+}
 
 
 // ADD SIMPLE TIMER

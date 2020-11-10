@@ -34,7 +34,7 @@ a:visited {
     margin-top: 10vh;
 }
 
-.cols, .row1, .row2, .row3, .row4, .row5 {
+.cols, .row {
     width: 200px;
     margin: auto;
     display: grid;

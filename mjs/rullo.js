@@ -92,3 +92,7 @@ const setup = {
 }
 
 setup.onLoad();
+
+
+
+// ADD SIMPLE TIMER

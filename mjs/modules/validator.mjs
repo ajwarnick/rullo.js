@@ -22,7 +22,8 @@ validator.check = (e) => {
         }
     }
 
-
+    // ADD CHECK FOR ALL ROWS AND ALL COLS 
+    // ADD VICTORY CLASS
     
 }
 

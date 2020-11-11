@@ -13,7 +13,7 @@
 <!-- ADD TIMER DATA -->
 <!-- <body data-size="5" data-sequence-start="1" data-sequence-end="9" data-debug="false" data-timer="10"> -->
 <!-- This body doesn't set any of our settings -->
-<body>
+<body data-timer="10">
 
 
     <!-- Once one has been set this will get the class 'hidden' -->
@@ -39,10 +39,14 @@
     </div>
 
     <!-- this will be shown if the time get to the upper limit and victory has not been declared -->
-    <div class="gameover hidden"></div>
+    <div class="gameover hidden">
+        <h1>You lose!</h1>
+    </div>
 
     <!-- this will be shown if the game board is completed -->
-    <div class="victory hidden"></div>
+    <div class="victory hidden">
+        <h1>You win!</h1>
+    </div>
 
     <!-- This is the sample html using the classes that the javascirpt will target -->
     <!-- The DIV with the class game will be filled with the correct HTML -->

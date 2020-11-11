@@ -1,7 +1,7 @@
 import {validator} from "./validator.mjs";
 
 let interactor = {
-    loaded: false
+    loaded: false,
 }
 
 interactor.setup = (size, mode) => {
@@ -36,17 +36,20 @@ interactor.setup = (size, mode) => {
 interactor.click = () => {
     // this get each cell and adds a click event to toggle the class of 'inactive' 
     let cells = document.getElementsByClassName("cell");
+
     Array.from(cells).forEach((cell, index) => {
         cell.addEventListener("click", (e) => {
-            e.target.classList.toggle("inactive");
-            
-            // CHECK IF ROW IS COMPLETED 
-            // USING VALIDATOR
-            validator.check(e);
+            var games = document.getElementsByClassName('game');
+            var firstGame = games[0];
 
-            // CHECK IF THE COLUMN IS COMPLETED 
-            // USING VALIDATOR
-            // validator.check();
+            // if we have not lost the game we can interact with it
+            if(!firstGame.classList.contains("lost")){
+                e.target.classList.toggle("inactive");
+            
+                // USING VALIDATOR
+                validator.check(e);
+            }
+            
         }); 
     })
 }
@@ -54,6 +57,9 @@ interactor.click = () => {
 interactor.load = (matrix, rows, cols) => {
     // this fills each cell with the apropiate number from the matrix 
     let cells = document.getElementsByClassName("cell");
+    var games = document.getElementsByClassName('game');
+    var firstGame = games[0];
+
     Array.from(cells).forEach((cell, index) => {
         cell.innerHTML = matrix[index];
     })
@@ -73,14 +79,7 @@ interactor.load = (matrix, rows, cols) => {
     }
 
     interactor.click();
+
 }
-
-
-
-
-// ADD ROW CHECK
-// ADD COLUMN CHECK
-// ADD FULL GAME CHECK
-
 
 export { interactor };

@@ -21,12 +21,27 @@ validator.check = (e) => {
             sum.classList.remove("success");
         }
     }
+    if(validator.win()){
+        for(let victory of document.getElementsByClassName('victory')){
+            victory.classList.remove("hidden");
+        }
+        for(let timer of document.getElementsByClassName('timer')){
+            timer.classList.add("hidden");
+            
+        }
+    }
+}
 
-    // ADD CHECK FOR ALL ROWS AND ALL COLS
-    // STOP TIMER 
-    // ADD VICTORY CLASS
-    
-    
+validator.win = () => {
+    let win = true;
+
+    for(let sum of document.getElementsByClassName('sum')){
+        if(!sum.classList.contains("success")){
+            win = false;
+        }        
+    }
+
+    return win;
 }
 
 validator.row = (e) => {
@@ -124,3 +139,4 @@ let getColumnsSums = (elem) => {
 
     return sums;
 }
+

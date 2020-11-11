@@ -72,10 +72,6 @@ const setup = {
             // debug = body.dataset.debug;
         }
 
-        if( ("timer" in body.dataset) ){
-            timer.initialize(body.dataset.timer);
-        }
-
         // checks to see if the body has a size data attribute
         if( ("size" in body.dataset) ){
             setup.setSize(body.dataset.size);
@@ -107,6 +103,12 @@ const setup = {
                 let { matrix, rows, cols } = generator.load( setup.size, setup.sequenceStart, setup.sequenceEnd );
                 // the we pass the matrix of numbers to our intoractor once it has been generated 
                 interactor.load(matrix, rows, cols);
+
+                // once we have made the game we start the timer
+                const b = document.body;
+                if( ("timer" in b.dataset) ){
+                    timer.initialize(b.dataset.timer);
+                }
             }
             
         }

@@ -180,12 +180,27 @@ validator.check = (e) => {
             sum.classList.remove("success");
         }
     }
+    if(validator.win()){
+        for(let victory of document.getElementsByClassName('victory')){
+            victory.classList.remove("hidden");
+        }
+        for(let timer of document.getElementsByClassName('timer')){
+            timer.classList.add("hidden");
+            
+        }
+    }
+};
 
-    // ADD CHECK FOR ALL ROWS AND ALL COLS
-    // STOP TIMER 
-    // ADD VICTORY CLASS
-    
-    
+validator.win = () => {
+    let win = true;
+
+    for(let sum of document.getElementsByClassName('sum')){
+        if(!sum.classList.contains("success")){
+            win = false;
+        }        
+    }
+
+    return win;
 };
 
 validator.row = (e) => {
@@ -283,7 +298,7 @@ let getColumnsSums = (elem) => {
 };
 
 let interactor = {
-    loaded: false
+    loaded: false,
 };
 
 interactor.setup = (size, mode) => {
@@ -318,17 +333,20 @@ interactor.setup = (size, mode) => {
 interactor.click = () => {
     // this get each cell and adds a click event to toggle the class of 'inactive' 
     let cells = document.getElementsByClassName("cell");
+
     Array.from(cells).forEach((cell, index) => {
         cell.addEventListener("click", (e) => {
-            e.target.classList.toggle("inactive");
-            
-            // CHECK IF ROW IS COMPLETED 
-            // USING VALIDATOR
-            validator.check(e);
+            var games = document.getElementsByClassName('game');
+            var firstGame = games[0];
 
-            // CHECK IF THE COLUMN IS COMPLETED 
-            // USING VALIDATOR
-            // validator.check();
+            // if we have not lost the game we can interact with it
+            if(!firstGame.classList.contains("lost")){
+                e.target.classList.toggle("inactive");
+            
+                // USING VALIDATOR
+                validator.check(e);
+            }
+            
         }); 
     });
 };
@@ -336,6 +354,9 @@ interactor.click = () => {
 interactor.load = (matrix, rows, cols) => {
     // this fills each cell with the apropiate number from the matrix 
     let cells = document.getElementsByClassName("cell");
+    var games = document.getElementsByClassName('game');
+    var firstGame = games[0];
+
     Array.from(cells).forEach((cell, index) => {
         cell.innerHTML = matrix[index];
     });
@@ -355,6 +376,7 @@ interactor.load = (matrix, rows, cols) => {
     }
 
     interactor.click();
+
 };
 
 let timer = {
@@ -381,13 +403,15 @@ timer.loop = () => {
     let distance = timer.startTime - now;
 
     if( distance <= 1){
-        timer.hide();
-        timer.clear();
+        timer.gameover();
     }else {
         let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         let seconds = Math.floor((distance % (1000 * 60)) / 1000);
         
         for( let t of timer.timers){
+            if( t.classList.contains("hidden")){
+                timer.clear();
+            }
             let timeString = (minutes > 0) ? minutes + ":" + pack(seconds, 2) : "0:" + pack(seconds, 2);
             t.innerHTML = timeString;
         }
@@ -401,6 +425,19 @@ timer.clear = () => {
 timer.hide = () => {
     for( let t of timer.timers){
         t.classList.add("hidden");
+    }
+};
+
+timer.gameover = () => {
+    timer.hide();
+    timer.clear();
+
+    for(let game of document.getElementsByClassName('game')){
+        game.classList.add("lost");
+    }
+
+    for(let gameover of document.getElementsByClassName('gameover')){
+        gameover.classList.remove("hidden");
     }
 };
 
@@ -466,10 +503,6 @@ const setup = {
 
         if( ("debug" in body.dataset) );
 
-        if( ("timer" in body.dataset) ){
-            timer.initialize(body.dataset.timer);
-        }
-
         // checks to see if the body has a size data attribute
         if( ("size" in body.dataset) ){
             setup.setSize(body.dataset.size);
@@ -501,6 +534,12 @@ const setup = {
                 let { matrix, rows, cols } = generator.load( setup.size, setup.sequenceStart, setup.sequenceEnd );
                 // the we pass the matrix of numbers to our intoractor once it has been generated 
                 interactor.load(matrix, rows, cols);
+
+                // once we have made the game we start the timer
+                const b = document.body;
+                if( ("timer" in b.dataset) ){
+                    timer.initialize(b.dataset.timer);
+                }
             }
             
         }

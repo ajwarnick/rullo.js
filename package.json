@@ -27,7 +27,7 @@
   "homepage": "https://github.com/ajwarnick/rullo.js#readme",
   "devDependencies": {
     "@rollup/plugin-replace": "^2.3.4",
-    "dual-publish": "^0.11.0",
+    "dual-publish": "^2.0.2",
     "rollup": "^2.33.1",
     "rollup-plugin-terser": "^7.0.2"
   }

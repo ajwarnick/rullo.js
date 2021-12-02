@@ -1,3 +1,5 @@
+import {pack} from "./pack.mjs";
+
 let timer = {
     loaded: false,
     timers: [],
@@ -58,11 +60,6 @@ timer.gameover = () => {
     for(let gameover of document.getElementsByClassName('gameover')){
         gameover.classList.remove("hidden");
     }
-}
-
-function pack(num, length){
-    let s = (num).toLocaleString('en-US', {minimumIntegerDigits: length, useGrouping:false});
-    return s;
 }
 
 export { timer };

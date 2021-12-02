@@ -6,9 +6,9 @@
     <title>Document</title>
     <link rel="stylesheet" href="./demo.css">
     <!-- <script src="../mjs/rullo.js" type="module" difer></script> -->
-    <!-- <script src="../dist/js/rullo.js" difer></script> -->
+    <script src="../dist/js/rullo.js" difer></script>
 
-    <script src="https://unpkg.com/rullo.js/dist/js/rullo.js" difer></script>
+    <!-- <script src="https://unpkg.com/rullo.js/dist/js/rullo.js" difer></script> -->
 </head>
 <!-- if there are data attributes on the body the selection DIVs will get the class 'hidden' -->
 <!-- This body sets all of our settings -->
@@ -19,7 +19,7 @@
 
 
     <!-- Once one has been set this will get the class 'hidden' -->
-    <div class="selection size">
+    <div class="selection size" data-selector="size">
         <!-- The header is for labeling purposes only  -->
         <h4>Select a Size:</h4>
         <div class="option" data-size="4">4x4</div>
@@ -30,7 +30,7 @@
     </div>
 
     <!-- Once one has been set this will get the class 'hidden' -->
-    <div class="selection sequence">
+    <div class="selection sequence" data-selector="sequence">
         <!-- The header is for labeling purposes only  -->
         <h4>Select a Sequence:</h4>
         <div class="option" data-sequence-start="1" data-sequence-end="9">1-9</div>
@@ -115,6 +115,8 @@
 
     <!-- Timer updates every second and is filled with the time left -->
     <div class="timer"></div>
+
+    <div class="counter hidden"></div>
 
     <!-- this will be shown if the time get to the upper limit and victory has not been declared -->
     <div class="gameover hidden">

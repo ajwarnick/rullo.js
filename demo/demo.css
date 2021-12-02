@@ -1,113 +1,122 @@
-body{
-    background-color: antiquewhite;
-    font-family: sans-serif;
-    margin: 0;
-    padding: 0;
+body {
+  background-color: antiquewhite;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-img{
-    max-width: 100%;
-    display: block;
+img {
+  max-width: 100%;
+  display: block;
 }
 
-a{
-    text-decoration: none;
-    color: purple;
+a {
+  text-decoration: none;
+  color: purple;
 }
 
 a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 a:visited {
-    color: purple;
+  color: purple;
 }
 
-.hidden{
-    display: none;
+.hidden {
+  display: none;
 }
 
 /* Above here is the base style I advise starting from in all projects */
 /* From here down is the few styles to make it look kind of like the game */
 
-.game{
-    margin-top: 10vh;
+.game {
+  margin-top: 10vh;
 }
 
-.cols, .row {
-    width: 200px;
-    margin: auto;
-    display: grid;
-    text-align: center;
+.cols,
+.row {
+  width: 200px;
+  margin: auto;
+  display: grid;
+  text-align: center;
 }
 
-.four .cols, .four .row{
-    grid-template-columns: repeat(6, 1fr);
+.four .cols,
+.four .row {
+  grid-template-columns: repeat(6, 1fr);
 }
 
-.five .cols, .five .row{
-    grid-template-columns: repeat(7, 1fr);
+.five .cols,
+.five .row {
+  grid-template-columns: repeat(7, 1fr);
 }
 
-.six .cols, .six .row{
-    grid-template-columns: repeat(8, 1fr);
+.six .cols,
+.six .row {
+  grid-template-columns: repeat(8, 1fr);
 }
 
-.seven .cols, .seven .row{
-    grid-template-columns: repeat(9, 1fr);
+.seven .cols,
+.seven .row {
+  grid-template-columns: repeat(9, 1fr);
 }
 
-
-.cols div:first-child{
-    grid-column-start:2;
+.cols div:first-child {
+  grid-column-start: 2;
 }
 
-.cell{
-    -webkit-user-select: none;  
-    -moz-user-select: none;    
-    -ms-user-select: none;      
-    user-select: none;
+.cell {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    /* This will be the main property added in the final project */
-    transition: color .5s;
+  /* This will be the main property added in the final project */
+  transition: color 0.5s;
 }
 
-.inactive{
-    color:lightgray;
+.inactive {
+  color: lightgray;
 }
 
-.success{
-    /* border: 1px solid green; */
-    background-color: lightgreen;
+.success {
+  /* border: 1px solid green; */
+  background-color: lightgreen;
 }
 
-h4{
-    margin: 20px;
+h4 {
+  margin: 20px;
 }
 
-h1{
-    text-align: center;
+h1 {
+  text-align: center;
 }
 
-.option{
-    -webkit-user-select: none;  
-    -moz-user-select: none;    
-    -ms-user-select: none;      
-    user-select: none;
+.option {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    border: 1px solid black;
-    text-align: center;
-    padding: 20px;
-    margin: 20px;
-    
+  border: 1px solid black;
+  text-align: center;
+  padding: 20px;
+  margin: 20px;
 }
 
-.timer{
-    text-align: center;
-    margin: 3rem;
-    font-size: 3rem;
+.timer {
+  text-align: center;
+  margin: 3rem;
+  font-size: 3rem;
+}
+
+.counter {
+  text-align: center;
+  margin: 3rem;
+  font-size: 3rem;
 }

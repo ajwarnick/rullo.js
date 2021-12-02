@@ -379,6 +379,11 @@ interactor.load = (matrix, rows, cols) => {
 
 };
 
+let pack = (num, length) => {
+    let s = (num).toLocaleString('en-US', {minimumIntegerDigits: length, useGrouping:false});
+    return s;
+};
+
 let timer = {
     loaded: false,
     timers: [],
@@ -441,10 +446,53 @@ timer.gameover = () => {
     }
 };
 
-function pack(num, length){
-    let s = (num).toLocaleString('en-US', {minimumIntegerDigits: length, useGrouping:false});
-    return s;
-}
+let counter = {
+    loaded: false,
+    counters: [],
+};
+
+
+counter.start = (l) => {
+    counter.startTime = new Date();
+    counter.startTime.setSeconds( counter.startTime.getSeconds() + parseInt(l) );
+};
+
+counter.initialize = (l) => {
+    for( let t of document.getElementsByClassName('counter') ){
+        counter.counters.push(t);     
+    }
+
+    counter.start(l);
+    counter.interval = setInterval(counter.loop, 1000);
+};
+
+counter.loop = () => {
+    var now = new Date().getTime();
+    let distance = now - counter.startTime;
+
+
+    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+    for( let t of counter.counters){
+        if( t.classList.contains("hidden")){
+            counter.clear();
+        }
+        let timeString = (minutes > 0) ? minutes + ":" + pack(seconds, 2) : "0:" + pack(seconds, 2);
+        t.innerHTML = timeString;
+    }
+
+};
+
+counter.clear = () => {
+    clearInterval(counter.interval);
+};
+
+counter.hide = () => {
+    for( let t of counter.counters){
+        t.classList.add("hidden");
+    }
+};
 
 // TODOS ARE IN ALL CAPS AND WILL BE DELETED WHEN COMPLETED 
 
@@ -457,7 +505,11 @@ const setup = {
     setSize: (s) => {
         setup.size = s;
         for (let element of document.getElementsByClassName('selection size')) { 
-            element.classList.toggle("hidden");
+            element.classList.add("hidden");
+        }
+
+        for (let element of document.querySelectorAll('[data-selector="size"]')) { 
+            element.classList.add("hidden");
         }
         setup.allSet();
     },
@@ -465,13 +517,18 @@ const setup = {
         setup.sequenceStart = s;
         setup.sequenceEnd = e;
         for (let element of document.getElementsByClassName('selection sequence')) { 
-            element.classList.toggle("hidden");
+            element.classList.add("hidden");
+        }
+
+        for (let element of document.querySelectorAll('[data-selector="sequence"]')) { 
+            element.classList.add("hidden");
         }
         setup.allSet();
     },
     sizeClick: () => {
         // sets a click event of our size elements 
-        for (let element of document.getElementsByClassName('selection size')) { 
+        // for (let element of document.getElementsByClassName('selection size')) { 
+        for (let element of  document.querySelectorAll('[data-size]')) { 
             element.addEventListener('click', function (e) {
                 if(e.target.dataset.size){
                     // sets the size data 
@@ -482,7 +539,8 @@ const setup = {
     },
     sequenceClick: () => {
         // sets a click event of our sequence elements 
-        for (let element of document.getElementsByClassName('selection sequence')) { 
+        // for (let element of document.getElementsByClassName('selection sequence')) { 
+        for (let element of  document.querySelectorAll('[data-sequence-start]')) { 
             element.addEventListener('click', function (e) {
                 if(e.target.dataset.sequenceStart && e.target.dataset.sequenceEnd){
                     // sets the sequence data 
@@ -539,6 +597,10 @@ const setup = {
                 const b = document.body;
                 if( ("timer" in b.dataset) ){
                     timer.initialize(b.dataset.timer);
+                }
+
+                if(document.querySelector(".counter")){
+                    counter.initialize(0);
                 }
             }
             

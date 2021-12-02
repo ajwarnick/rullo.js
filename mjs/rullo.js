@@ -4,6 +4,7 @@
 import {generator} from "./modules/generator.mjs";
 import {interactor} from "./modules/interactor.mjs";
 import {timer} from "./modules/timer.mjs";
+import {counter} from "./modules/counter.mjs";
 
 let name = "RULLO.JS";
 let version = "0.2.0";
@@ -23,7 +24,11 @@ const setup = {
         (debug) && (console.log("Size: " + s));
         setup.size = s;
         for (let element of document.getElementsByClassName('selection size')) { 
-            element.classList.toggle("hidden")
+            element.classList.add("hidden")
+        }
+
+        for (let element of document.querySelectorAll('[data-selector="size"]')) { 
+            element.classList.add("hidden")
         }
         setup.allSet();
     },
@@ -32,13 +37,18 @@ const setup = {
         setup.sequenceStart = s;
         setup.sequenceEnd = e;
         for (let element of document.getElementsByClassName('selection sequence')) { 
-            element.classList.toggle("hidden")
+            element.classList.add("hidden")
+        }
+
+        for (let element of document.querySelectorAll('[data-selector="sequence"]')) { 
+            element.classList.add("hidden")
         }
         setup.allSet();
     },
     sizeClick: () => {
         // sets a click event of our size elements 
-        for (let element of document.getElementsByClassName('selection size')) { 
+        // for (let element of document.getElementsByClassName('selection size')) { 
+        for (let element of  document.querySelectorAll('[data-size]')) { 
             element.addEventListener('click', function (e) {
                 if(e.target.dataset.size){
                     // sets the size data 
@@ -49,7 +59,8 @@ const setup = {
     },
     sequenceClick: () => {
         // sets a click event of our sequence elements 
-        for (let element of document.getElementsByClassName('selection sequence')) { 
+        // for (let element of document.getElementsByClassName('selection sequence')) { 
+        for (let element of  document.querySelectorAll('[data-sequence-start]')) { 
             element.addEventListener('click', function (e) {
                 if(e.target.dataset.sequenceStart && e.target.dataset.sequenceEnd){
                     // sets the sequence data 
@@ -108,6 +119,10 @@ const setup = {
                 const b = document.body;
                 if( ("timer" in b.dataset) ){
                     timer.initialize(b.dataset.timer);
+                }
+
+                if(document.querySelector(".counter")){
+                    counter.initialize(0);
                 }
             }
             
